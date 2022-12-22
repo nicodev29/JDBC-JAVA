@@ -1,30 +1,31 @@
 package EJ1;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-public class Driver {
+public class Main2 {
     public static void main(String[] args) {
 
-        String url = "jdbc:mysql://localhost:3307/nba?useSSL=false";
-        String user = "root";
-        String pass = "root";
+        final String url = "jdbc:mysql://localhost:3307/perros?useSSL=false";
+        final String user = "root";
+        final String pass = "root";
 
         try {
 
             Connection conexion = (Connection) DriverManager.getConnection(url, user, pass);
             Statement sentencia = (Statement) conexion.createStatement();
-            ResultSet resultado = sentencia.executeQuery("SELECT * FROM jugador limit 10");
+            ResultSet resultado = sentencia.executeQuery("SELECT * FROM mascota limit 10");
             System.out.println();
 
             while (resultado.next()) {
-                System.out.println("Nombre jugador: " + resultado.getString("nombre") + " -- " +"Procedencia: " + resultado.getString("procedencia"));
+                System.out.println("Nombre apodo: " + resultado.getString("apodo"));
+                System.out.println("Se ejecuto correctamente");
             }
 
             conexion.close();
             sentencia.close();
             resultado.close();
+            System.out.println("Se ejecuto correctamente");
 
         } catch (Exception e) {
             e.printStackTrace();
